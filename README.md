@@ -2,7 +2,7 @@
 
 ### EcoTrack:	Environmental	Monitoring	and	Reporting	Platform
 
-### Main Features:
+#### Main Features:
 
 • Data Collection: Users can submit environmental data from various sources, such as IoT 
 sensors, manual observations, or data uploads. Data can include air quality, temperature, 
@@ -23,11 +23,9 @@ deforestation, or wildlife endangerment.
 contributions and sustainability efforts based on the data they provide and the actions 
 they take.
 
-##### • Educational Resources: 
-Offer educational resources, articles, and guides on 
+• Educational Resources: Offer educational resources, articles, and guides on 
 environmental topics to raise awareness and educate users on sustainable practices.
 
-##### • Open Data Access: 
-Provide APIs for researchers, scientists, and organizations to access 
+• Open Data Access: Provide APIs for researchers, scientists, and organizations to access 
 the aggregated environmental data for research and analysis.
 
