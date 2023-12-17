@@ -2,7 +2,7 @@
 
 ### EcoTrack:	Environmental	Monitoring	and	Reporting	Platform
 
-#### Main Features:
+### Main Features:
 • Data Collection: Users can submit environmental data from various sources, such as IoT 
 sensors, manual observations, or data uploads. Data can include air quality, temperature, 
 humidity, water quality, biodiversity metrics, and more.
