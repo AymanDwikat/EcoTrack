@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2023 at 06:42 PM
+-- Generation Time: Dec 20, 2023 at 03:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -87,8 +87,17 @@ CREATE TABLE `reports` (
   `reportId` int(11) NOT NULL,
   `reportType` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `location` varchar(255) NOT NULL
+  `location` varchar(255) NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`reportId`, `reportType`, `description`, `location`, `userId`) VALUES
+(1, 'Form', 'hi this my form', 'Nablus', 1),
+(2, 'Json', 'hi this my Json', 'Beita', 1);
 
 -- --------------------------------------------------------
 
@@ -98,8 +107,18 @@ CREATE TABLE `reports` (
 
 CREATE TABLE `scores` (
   `scoreId` int(11) NOT NULL,
-  `scoreValue` float NOT NULL
+  `scoreValue` float NOT NULL,
+  `userId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `scores`
+--
+
+INSERT INTO `scores` (`scoreId`, `scoreValue`, `userId`) VALUES
+(1, 0.6, 1),
+(2, 5.6, 2),
+(3, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -182,13 +201,15 @@ ALTER TABLE `opendata`
 -- Indexes for table `reports`
 --
 ALTER TABLE `reports`
-  ADD PRIMARY KEY (`reportId`);
+  ADD PRIMARY KEY (`reportId`),
+  ADD KEY `fk_reports_users` (`userId`);
 
 --
 -- Indexes for table `scores`
 --
 ALTER TABLE `scores`
-  ADD PRIMARY KEY (`scoreId`);
+  ADD PRIMARY KEY (`scoreId`),
+  ADD KEY `fk_scores_users` (`userId`);
 
 --
 -- Indexes for table `sequelizemeta`
@@ -236,19 +257,35 @@ ALTER TABLE `opendata`
 -- AUTO_INCREMENT for table `reports`
 --
 ALTER TABLE `reports`
-  MODIFY `reportId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `reportId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `scores`
 --
 ALTER TABLE `scores`
-  MODIFY `scoreId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `scoreId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `reports`
+--
+ALTER TABLE `reports`
+  ADD CONSTRAINT `fk_reports_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`);
+
+--
+-- Constraints for table `scores`
+--
+ALTER TABLE `scores`
+  ADD CONSTRAINT `fk_scores_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

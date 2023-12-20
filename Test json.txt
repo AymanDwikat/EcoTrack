@@ -1,0 +1,20 @@
+{
+    "name": "aymanemad",
+    "email": "aymanemad@gmai.com",
+    "password": "123456",
+    "location": "nablus",
+    "role": "dd",
+    "interests": "dd"
+}
+
+{
+	"reportType": "Form",
+	"description": "hi this my form",
+	"location": "Nablus",
+	"userId": 1
+}
+
+{
+	"scoreValue": "Form",
+	"userId": 1
+}

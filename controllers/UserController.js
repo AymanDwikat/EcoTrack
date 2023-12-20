@@ -13,18 +13,82 @@ class UserController {
       interests
     );
 
-    if (result) {
-      res.send(result);
+    if (result.affectedRows > 0) {
+      // Created successfully
+      res.send({ message: "The user was created successfully" });
     } else {
-      res.send({ message: "empty" });
+      if (result.code === "ER_DUP_ENTRY") {
+        // Duplicate entry error for 'email'
+        res.send({ message: "Email address is already in use" });
+      } else {
+        res.send(result);
+      }
+    }
+  }
+
+  static async delete_user(req, res) {
+    const id = parseInt(req.params.id);
+    var result = await userModel.delete_user(id);
+
+    if (result.affectedRows > 0) {
+      // Deleted successfully
+      res.send({ message: `The user with ID ${id} has been deleted` });
+    } else {
+      res.send({ message: "This user does not exist" });
+    }
+  }
+
+  static async update_user(req, res) {
+    const id = parseInt(req.params.id);
+    const { name, email, password, location, role, interests } = req.body;
+
+    var result = await userModel.update_user(
+      id,
+      name,
+      email,
+      password,
+      location,
+      role,
+      interests
+    );
+
+    if (result.affectedRows > 0) {
+      // Updated successfully
+      res.send({ message: `The user with ID ${id} has been updated` });
+    } else {
+      res.send({ message: "This user does not exist" });
+    }
+  }
+
+  static async get_user_byId(req, res) {
+    const id = parseInt(req.params.id);
+    var result = await userModel.get_user_byId(id);
+
+    if (Array.isArray(result) && result.length > 0) {
+      var extractedData = result.map((user) => {
+        return {
+          name: user.name,
+          email: user.email,
+          password: user.password,
+          location: user.location,
+          role: user.role,
+          interests: user.interests,
+        };
+      });
+
+      res.send(extractedData);
+    } else {
+      res.send({ message: "This user does not exist" });
     }
   }
 
   static async get_users(req, res) {
-    var results = await userModel.get_users();
+    var result = await userModel.get_users();
 
-    if (results) {
-      res.send(results);
+    if (Array.isArray(result) && result.length > 0) {
+      res.send(result);
+    } else {
+      res.send({ message: "There is no user" });
     }
   }
 }
