@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2023 at 03:39 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Dec 23, 2023 at 04:56 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,8 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `alerts` (
   `alertId` int(11) NOT NULL,
   `alertType` varchar(255) DEFAULT NULL,
-  `threshold` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `threshold` float DEFAULT NULL,
+  `userId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,12 +43,21 @@ CREATE TABLE `alerts` (
 CREATE TABLE `datacollections` (
   `dataId` int(11) NOT NULL,
   `dataType` varchar(255) NOT NULL,
-  `key` varchar(255) NOT NULL,
+  `datakey` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
   `value` float NOT NULL,
   `source` varchar(255) NOT NULL,
-  `unit` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `unit` varchar(255) NOT NULL,
+  `userId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `datacollections`
+--
+
+INSERT INTO `datacollections` (`dataId`, `dataType`, `datakey`, `location`, `value`, `source`, `unit`, `userId`) VALUES
+(7, 'humidity', 'sensor', 'biet-foureek', 24.5, 'sensor', 'g.m', 3),
+(10, 'temp', 'sensor', 'Nablus', 13, 'sensor', 'C', 3);
 
 -- --------------------------------------------------------
 
@@ -61,7 +71,14 @@ CREATE TABLE `educationals` (
   `description` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `educationals`
+--
+
+INSERT INTO `educationals` (`educationalid`, `title`, `description`, `url`, `category`) VALUES
+(2, 'Introduction to Sustainable Energy', 'Learn the basics of sustainable energy sources and their impact on the environment.', 'https://www.routledge.com/blog/article/what-is-sustainable-energy-and-why-do-we-need-it', ' Energy');
 
 -- --------------------------------------------------------
 
@@ -75,7 +92,7 @@ CREATE TABLE `opendata` (
   `key` varchar(255) NOT NULL,
   `permession` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -89,7 +106,7 @@ CREATE TABLE `reports` (
   `description` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `reports`
@@ -109,7 +126,7 @@ CREATE TABLE `scores` (
   `scoreId` int(11) NOT NULL,
   `scoreValue` float NOT NULL,
   `userId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `scores`
@@ -118,7 +135,7 @@ CREATE TABLE `scores` (
 INSERT INTO `scores` (`scoreId`, `scoreValue`, `userId`) VALUES
 (1, 0.6, 1),
 (2, 5.6, 2),
-(3, 10, 3);
+(3, 15, 3);
 
 -- --------------------------------------------------------
 
@@ -127,7 +144,7 @@ INSERT INTO `scores` (`scoreId`, `scoreValue`, `userId`) VALUES
 --
 
 CREATE TABLE `sequelizemeta` (
-  `name` varchar(255) NOT NULL
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -158,7 +175,7 @@ CREATE TABLE `users` (
   `location` varchar(255) NOT NULL,
   `role` varchar(255) NOT NULL,
   `interests` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
@@ -167,7 +184,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`userId`, `name`, `email`, `password`, `location`, `role`, `interests`) VALUES
 (1, 'ayman', 'ayman@gmail.com', '12345', 'nablus', 'myrole', 'myint'),
 (2, 'obada kamal', 'obada@gmail.com', '1234567890', 'jenin', 'obadarole', 'obabdint'),
-(3, 'aymanemad', 'aymanemad@gmai.com', '123456', 'nablus', 'dd', 'dd');
+(3, 'Ezz', 'ezzmletatmletat@gmail.com', '123456', 'nablus', 'dd', 'dd');
 
 --
 -- Indexes for dumped tables
@@ -177,13 +194,15 @@ INSERT INTO `users` (`userId`, `name`, `email`, `password`, `location`, `role`, 
 -- Indexes for table `alerts`
 --
 ALTER TABLE `alerts`
-  ADD PRIMARY KEY (`alertId`);
+  ADD PRIMARY KEY (`alertId`),
+  ADD KEY `fk_alerts_users` (`userId`);
 
 --
 -- Indexes for table `datacollections`
 --
 ALTER TABLE `datacollections`
-  ADD PRIMARY KEY (`dataId`);
+  ADD PRIMARY KEY (`dataId`),
+  ADD KEY `fk_datacollections_users` (`userId`);
 
 --
 -- Indexes for table `educationals`
@@ -239,13 +258,13 @@ ALTER TABLE `alerts`
 -- AUTO_INCREMENT for table `datacollections`
 --
 ALTER TABLE `datacollections`
-  MODIFY `dataId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `dataId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `educationals`
 --
 ALTER TABLE `educationals`
-  MODIFY `educationalid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `educationalid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `opendata`
@@ -274,6 +293,18 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `alerts`
+--
+ALTER TABLE `alerts`
+  ADD CONSTRAINT `fk_alerts_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`);
+
+--
+-- Constraints for table `datacollections`
+--
+ALTER TABLE `datacollections`
+  ADD CONSTRAINT `fk_datacollections_users` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`);
 
 --
 -- Constraints for table `reports`
