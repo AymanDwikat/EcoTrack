@@ -51,7 +51,28 @@ class UserModel {
       });
     });
   }
-
+  static authenticateUser(email, password) {
+    return new Promise((resolve, reject) => {
+      const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+  
+      db.query(sql, [email, password], (error, results) => {
+        if (error) {
+          reject(error);
+        } else {
+          if (results.length > 0) {
+            const user = results[0];
+            resolve({
+              userId: user.userId,
+              username: user.name,
+              location: user.location  
+            });
+          } else {
+            resolve(null); // User not found or invalid credentials
+          }
+        }
+      });
+    });
+  }
   static update_user(
     id,
     userName,

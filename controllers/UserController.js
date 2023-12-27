@@ -1,5 +1,6 @@
 const userModel = require("../models/User");
-
+const jwt = require('jsonwebtoken');
+const { secretKey } = require('../config/db');
 class UserController {
   static async create_user(req, res) {
     const { name, email, password, location, role, interests } = req.body;
@@ -61,7 +62,7 @@ class UserController {
   }
 
   static async get_user_byId(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.userId);
     var result = await userModel.get_user_byId(id);
 
     if (Array.isArray(result) && result.length > 0) {
@@ -91,6 +92,28 @@ class UserController {
       res.send({ message: "There is no user" });
     }
   }
-}
 
+
+static async login (req, res)  {
+  const user = await userModel.authenticateUser(req.body.email, req.body.password);
+
+  if (!user) {
+    return res.status(401).json({ message: 'Invalid credentials' });
+  }
+
+  // Generate a JWT
+  const payload = {
+    userId: user.userId,
+    username: user.username,
+    location: user.location, // Extract the location here
+  };
+  const token = jwt.sign(payload, 'SecretKey', { expiresIn: '1h' });
+  delete user.password;
+  const user_name = user.username
+  res.status(200).json({ token, user_name });
+} catch (err) {
+  // Send the token to the client
+  res.json({ token });
+}
+}
 module.exports = UserController;
