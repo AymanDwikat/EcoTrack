@@ -1,0 +1,1099 @@
+{
+	"info": {
+		"_postman_id": "cf118a6f-8a0d-4bef-9298-bf73aaeb878e",
+		"name": "EcoTrack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30063815"
+	},
+	"item": [
+		{
+			"name": "alert",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"alertType\":\"hummanity\",\r\n   \"threshold\":\"20\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/alert?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDI2NTAsImV4cCI6MTcwMzgwNjI1MH0.T2JvggmbRGKNZ8_M0W-lybtBKm32-k3Tayp7KPOcic8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"alert"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDI2NTAsImV4cCI6MTcwMzgwNjI1MH0.T2JvggmbRGKNZ8_M0W-lybtBKm32-k3Tayp7KPOcic8"
+								}
+							]
+						},
+						"description": "This endpoint for create alerts, the user can setup an alert, he should enter the type of environmental data and the threshold of this data that he wanted to setup the alert in it."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/alert/delete/1?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"alert",
+								"delete",
+								"1"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzAzNDI0MTQ3LCJleHAiOjE3MDM1MTA1NDd9.SsFZbhVRhRqhcRvYnWftWk6QGkGDZ4TU7BuZDfKybYQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"threshold\":\"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/alert/update/2?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"alert",
+								"update",
+								"2"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk"
+								}
+							]
+						},
+						"description": "The user can edit the alert in specefied environmental data, he can change the threshold when the alert is turned on, so he should specify which alert he wanted to edit."
+					},
+					"response": []
+				},
+				{
+					"name": "get alert",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/alert/getalert/2?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"alert",
+								"getalert",
+								"2"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0gZW1hZCIsImxvY2F0aW9uIjoicmFtYWxsYWgiLCJpYXQiOjE3MDM4MDMzOTAsImV4cCI6MTcwMzgwNjk5MH0.O4EO_OvkrwCd3I5FfqpeJ0PQl1b2HwNLaRvnpcyncMk"
+								}
+							]
+						},
+						"description": "To receive the alert that the user has configured."
+					},
+					"response": []
+				},
+				{
+					"name": "notify",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "This endpoint sends out a notification when the environmental data matches what the user has set in their alert. When this happens, it automatically lets the user know about the environmental conditions they are tracking."
+					},
+					"response": []
+				},
+				{
+					"name": "get notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "To get the notification that sent to the user."
+					},
+					"response": []
+				},
+				{
+					"name": "delete notification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": ""
+						},
+						"description": "To delete notification that sent to the user, by the user himself."
+					},
+					"response": []
+				}
+			],
+			"description": "This floder is contain all endpoints about alert, the user can add, edit or cancel alerts, and the notification feature"
+		},
+		{
+			"name": "resource",
+			"item": [
+				{
+					"name": "insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"first\",\r\n    \"description\":\"about envirmoent\",\r\n    \"url\":\"https://www.sciencedaily.com/news/earth_climate/environmental_issues/\",\r\n    \"category\":\"gggg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/resource?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"resource"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4"
+								}
+							]
+						},
+						"description": "The user can add educational resources to the system and everyone can see it, the user should enter the title, category, description and the url of this resource."
+					},
+					"response": []
+				},
+				{
+					"name": "all resources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/resource/allresources?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"resource",
+								"allresources"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4"
+								}
+							]
+						},
+						"description": "Every one can get all the resources."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/resource/delete/4?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"resource",
+								"delete",
+								"4"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4"
+								}
+							]
+						},
+						"description": "The user can make search of recource by title, the result may be more than one resource."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"first\",\r\n    \"description\":\"about envirmoent\",\r\n    \"url\":\"https://www.sciencedaily.com/news/earth_climate/environmental_issues/\",\r\n    \"category\":\"book\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/resource/update/6?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"resource",
+								"update",
+								"6"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk3NzU5LCJleHAiOjE3MDM4MDEzNTl9.tyFPkG8LWivK61hvDTg6rFfE83X3OQ_8DBoc17YyFc4"
+								}
+							]
+						},
+						"description": "The user can get a resource by id."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains all endpoints related to resource features."
+		},
+		{
+			"name": "data collection",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"dataType\":\"Air Quality\",\r\n    \"location\":\"Palestine\",\r\n    \"value\":\"20\",\r\n    \"source\":\"IOT\",\r\n    \"unit\":\"C\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/data?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"data"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						},
+						"description": "user can record the data he collects from sensors ,IOT or any resource."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\":\"22\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/data/update/12?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"data",
+								"update",
+								"12"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						},
+						"description": "User can edit the data he collected."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/data/delete/13?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"data",
+								"delete",
+								"13"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						},
+						"description": "User can delete the data he collected."
+					},
+					"response": []
+				},
+				{
+					"name": "get data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/data/getdata/3?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"data",
+								"getdata",
+								"3"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						},
+						"description": "To get the environmental data that the user collected."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains all endpoints related to enviromental data features."
+		},
+		{
+			"name": "score",
+			"item": [
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"scoreValue\": \"0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/score/updatescore?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"score",
+								"updatescore"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c"
+								}
+							]
+						},
+						"description": "This endpoint is used for adding or updating a user's sustainability score in the system. It calculates the score based on various eco-friendly activities or contributions made by the user, like environmental data submissions or educational content engagement, and then records this score in the database."
+					},
+					"response": []
+				},
+				{
+					"name": "get score",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/score/getscore?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"score",
+								"getscore"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c"
+								}
+							]
+						},
+						"description": "This endpoint is designed to display a leaderboard showing top 10 users with the highest sustainability scores."
+					},
+					"response": []
+				},
+				{
+					"name": "get all scores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/score/allscores?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"score",
+								"allscores"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk1Njk1LCJleHAiOjE3MDM3OTkyOTV9.HjwBI4UEgF3vMNGvkjxz8QuQq4dIK8JlyMBk7vOPN1c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/score/deletescore?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk0NDY5LCJleHAiOjE3MDM3OTgwNjl9.HIh_XhwX9kRyvpSB2a7fktR5P7kJha7koSwu8mjVIm0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"score",
+								"deletescore"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk0NDY5LCJleHAiOjE3MDM3OTgwNjl9.HIh_XhwX9kRyvpSB2a7fktR5P7kJha7koSwu8mjVIm0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contain all endpoints related to the sustainability score features."
+		},
+		{
+			"name": "weather",
+			"item": [
+				{
+					"name": "weather",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/weather?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"weather"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs"
+								}
+							]
+						},
+						"description": "get the weather for current day, we got tempreature, clouds, wind and other data, this endpoint can be used by guest users."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contain the endpoints of external endpoint from open Weather map"
+		},
+		{
+			"name": "report",
+			"item": [
+				{
+					"name": "add",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"reportType\": \"Form\",\r\n\t\"description\": \"hi this Form\",\r\n\t\"location\": \"ramallah\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/report?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5ODIxNSwiZXhwIjoxNzAzODAxODE1fQ.IRD9RuSTxOoH21hocZTJUQGGXiDq5TvvECjeVJUIook",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"report"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5ODIxNSwiZXhwIjoxNzAzODAxODE1fQ.IRD9RuSTxOoH21hocZTJUQGGXiDq5TvvECjeVJUIook"
+								}
+							]
+						},
+						"description": "users can report environmental problems. They fill in the details about what and where the issue is."
+					},
+					"response": []
+				},
+				{
+					"name": "get all reports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/report/allreports?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"report",
+								"allreports"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs"
+								}
+							]
+						},
+						"description": "retrieves all environmental reports submitted by users."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"location\":\"jenin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/report/updatereport/2?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"report",
+								"updatereport",
+								"2"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs"
+								}
+							]
+						},
+						"description": "users can modify their previously submitted environmental reports."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/report/deletereport/6?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5MjM2MCwiZXhwIjoxNzAzNzk1OTYwfQ.FLhTt3DRIRbj52ZU-4Eb65_anPK9gDQd6SVWcmxZqKU",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"report",
+								"deletereport",
+								"6"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5MjM2MCwiZXhwIjoxNzAzNzk1OTYwfQ.FLhTt3DRIRbj52ZU-4Eb65_anPK9gDQd6SVWcmxZqKU"
+								}
+							]
+						},
+						"description": "users can remove their environmental reports. This is useful for eliminating outdated or resolved issues from the system."
+					},
+					"response": []
+				},
+				{
+					"name": "get report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/report/getreport/3?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"report",
+								"getreport",
+								"3"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzkzNzU4LCJleHAiOjE3MDM3OTczNTh9._OepaUK74nXxZMtATSlK1N4STL2fz2-iHlIMYK2tSPs"
+								}
+							]
+						},
+						"description": "User can get his reports."
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains all enpoints related to environmental report fetures"
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"akram\",\r\n    \"email\": \"akram@gmail.com\",\r\n    \"password\": \"12300\",\r\n    \"location\": \"ramallah\",\r\n    \"role\": \"ddk\",\r\n    \"interests\": \"bbk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user"
+							]
+						},
+						"description": "The user can register in the system , by use this endpoint He should give his name, password,etc."
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/user/allusers?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6Imh3YXJhIiwiaWF0IjoxNzAzNzkzMzkyLCJleHAiOjE3MDM3OTY5OTJ9.rR9DtEagRSm8Xvg6Ewmo5KWzQSpADB65Ge2zKFFKX9M",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"allusers"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjgsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6Imh3YXJhIiwiaWF0IjoxNzAzNzkzMzkyLCJleHAiOjE3MDM3OTY5OTJ9.rR9DtEagRSm8Xvg6Ewmo5KWzQSpADB65Ge2zKFFKX9M"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"akram emad\",\r\n    \"password\": \"12300\",\r\n    \"location\": \"ramallah\",\r\n    \"role\": \"ggk\",\r\n    \"interests\": \"ggk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user/updateuser?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"updateuser"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						},
+						"description": "The user can edit his profile informations like his name or password,email,etc."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"akram@gmail.com\",\r\n    \"password\":\"12300\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/user/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "User can login to the system."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/user/deleteuser?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5NTM1NywiZXhwIjoxNzAzNzk4OTU3fQ.eHY1kPcqFg_Bl90ya0NJqlTAwlNF8K7E1xl8G_WUW5w",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"deleteuser"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYXltYW4iLCJsb2NhdGlvbiI6Im5hYmx1cyIsImlhdCI6MTcwMzc5NTM1NywiZXhwIjoxNzAzNzk4OTU3fQ.eHY1kPcqFg_Bl90ya0NJqlTAwlNF8K7E1xl8G_WUW5w"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/user/getuser?Authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"user",
+								"getuser"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInVzZXJuYW1lIjoiYWtyYW0iLCJsb2NhdGlvbiI6InJhbWFsbGFoIiwiaWF0IjoxNzAzNzk5NzkxLCJleHAiOjE3MDM4MDMzOTF9.Be02sxqnweTiLxwMJ6vzT8PfiMGAvEqD7e7LZwJ8nuU"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This floder for main actions like login, edit and add profile."
+		},
+		{
+			"name": "open data",
+			"item": [
+				{
+					"name": "get data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/opendata",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"opendata"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

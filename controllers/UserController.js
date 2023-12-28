@@ -1,6 +1,7 @@
 const userModel = require("../models/User");
 const jwt = require("jsonwebtoken");
 const { secretKey } = require("../config/db");
+
 class UserController {
   static async create_user(req, res) {
     const { name, email, password, location, role, interests } = req.body;
@@ -26,18 +27,6 @@ class UserController {
       }
     }
   }
-
-  // static async delete_user(req, res) {
-  //   const id = parseInt(req.user.userId);
-  //   var result = await userModel.delete_user(id);
-
-  //   if (result.affectedRows > 0) {
-  //     // Deleted successfully
-  //     res.send({ message: `The user with ID ${id} has been deleted` });
-  //   } else {
-  //     res.send({ message: "This user does not exist" });
-  //   }
-  // }
 
   static async delete_user(req, res) {
     try {

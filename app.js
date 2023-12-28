@@ -11,4 +11,5 @@ app.use(require("./routers/datacollection_router"));
 app.use(require("./routers/resource_router"));
 app.use(require("./routers/weather_router(exAPI)"));
 app.use(require("./routers/opendata_router"));
+app.use(require("./routers/alert_router"));
 module.exports = app;
