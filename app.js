@@ -10,4 +10,5 @@ app.use(require("./routers/report-router"));
 app.use(require("./routers/datacollection_router"));
 app.use(require("./routers/educational_router"));
 app.use(require("./routers/weather_router(exAPI)"));
+app.use(require("./routers/opendata_router"));
 module.exports = app;
