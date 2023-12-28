@@ -1,10 +1,9 @@
 const db = require("../config/db");
+
 class educationalmodel {
-
-
-static async geteduacationaldata() {
+  static async get_resources() {
     return new Promise((resolve) => {
-      const sql = "SELECT * FROM educationals";
+      const sql = "SELECT * FROM resources";
       db.query(sql, [], (error, result) => {
         if (error) {
           resolve(error);
@@ -15,15 +14,11 @@ static async geteduacationaldata() {
     });
   }
 
-  static insertedudata(
-title,description,url,category
-  ) {
+  static insert_resource(title, description, url, category) {
     return new Promise((resolve) => {
       const sql =
-        "INSERT INTO educationals (title,description,url,category) VALUES (?, ?, ?, ? )";
-      const values = [
-   title,description,url,category
-      ];
+        "INSERT INTO resources (title ,description ,url ,category) VALUES (?, ?, ?, ? )";
+      const values = [title, description, url, category];
 
       db.query(sql, values, (error, result) => {
         if (error) {
@@ -34,25 +29,24 @@ title,description,url,category
       });
     });
   }
-  static updateedudata(
-    educationalid,title,description,url,category) {
+  
+  static update_resource(educationalid, title, description, url, category) {
     return new Promise((resolve) => {
       const sql =
-        "UPDATE educationals SET title = ?, description = ?, url=?, category=?  WHERE  educationalid = ?";
-        const values =[title,description,url,category,educationalid];
-        db.query(sql, values, (error, result) => {
+        "UPDATE resources SET title = ?, description = ?, url=?, category=?  WHERE  resourceId = ?";
+      const values = [title, description, url, category, educationalid];
+      db.query(sql, values, (error, result) => {
         if (error) {
-            resolve(error);
+          resolve(error);
         } else {
           resolve(result);
         }
-
       });
     });
   }
-  static deleteedudata(eduid) {
+  static delete_resource(eduid) {
     return new Promise((resolve) => {
-      const sql = "DELETE FROM educationals WHERE educationalid = ? ";
+      const sql = "DELETE FROM resources WHERE resourceId = ? ";
 
       db.query(sql, [eduid], (error, result) => {
         if (error) {

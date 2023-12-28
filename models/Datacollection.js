@@ -1,7 +1,7 @@
 const db = require("../config/db");
 
 class Datacollection {
-  static insertdata(dataId, dataType, datakey, location, value, source, unit, userId) {
+  static insertdata(dataType, location, value, source, unit, userId) {
     return new Promise((resolve) => {
       // Check if the user exists in the users table
       const userCheckQuery = "SELECT * FROM users WHERE userId = ?";
@@ -13,8 +13,8 @@ class Datacollection {
           resolve({ message: "The user does not exist" });
         } else {
           const insertQuery =
-            "INSERT INTO datacollections (dataType, datakey, location, value, source, unit, userId) VALUES (?,?,?,?,?,?,?)";
-          const values = [dataType, datakey, location, value, source, unit, userId];
+            "INSERT INTO datacollections (dataType, location, value, source, unit, userId) VALUES (?,?,?,?,?,?)";
+          const values = [dataType, location, value, source, unit, userId];
           db.query(insertQuery, values, (error, result) => {
             if (error) {
               resolve(error);
@@ -35,6 +35,7 @@ class Datacollection {
       });
     });
   }
+
   static getData(userId) {
     return new Promise((resolve) => {
       const getDataQuery = "SELECT * FROM datacollections WHERE userId = ?";
@@ -48,11 +49,11 @@ class Datacollection {
     });
   }
 
-  static updatedata(dataid, dataType, datakey, location, value, source, unit ,userId) {
+  static updatedata(value, dataid) {
     return new Promise((resolve) => {
       const sql =
-        "UPDATE datacollections SET dataType = ?, datakey = ?, location=?, value=?, source=?, unit=? , userid=? WHERE dataId=?";
-        const values = [dataType, datakey, location, value, source, unit, userId ,dataid];
+        "UPDATE datacollections SET value=? WHERE dataId=?";
+      const values = [value, dataid];
       db.query(sql, values, (error, result) => {
         if (error) {
           resolve(error);
@@ -62,6 +63,7 @@ class Datacollection {
       });
     });
   }
+
   static deletedata(dataId) {
     return new Promise((resolve) => {
       const sql = "DELETE FROM datacollections WHERE dataId = ? ";
@@ -76,4 +78,4 @@ class Datacollection {
     });
   }
 }
-    module.exports = Datacollection;
+module.exports = Datacollection;

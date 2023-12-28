@@ -1,6 +1,6 @@
 const userModel = require("../models/User");
-const jwt = require('jsonwebtoken');
-const { secretKey } = require('../config/db');
+const jwt = require("jsonwebtoken");
+const { secretKey } = require("../config/db");
 class UserController {
   static async create_user(req, res) {
     const { name, email, password, location, role, interests } = req.body;
@@ -27,26 +27,42 @@ class UserController {
     }
   }
 
-  static async delete_user(req, res) {
-    const id = parseInt(req.params.id);
-    var result = await userModel.delete_user(id);
+  // static async delete_user(req, res) {
+  //   const id = parseInt(req.user.userId);
+  //   var result = await userModel.delete_user(id);
 
-    if (result.affectedRows > 0) {
-      // Deleted successfully
-      res.send({ message: `The user with ID ${id} has been deleted` });
-    } else {
-      res.send({ message: "This user does not exist" });
+  //   if (result.affectedRows > 0) {
+  //     // Deleted successfully
+  //     res.send({ message: `The user with ID ${id} has been deleted` });
+  //   } else {
+  //     res.send({ message: "This user does not exist" });
+  //   }
+  // }
+
+  static async delete_user(req, res) {
+    try {
+      const id = parseInt(req.user.userId);
+      var result = await userModel.delete_user(id);
+
+      if (result.affectedRows > 0) {
+        // Deleted successfully
+        res.send({ message: `The user with ID ${id} has been deleted` });
+      } else {
+        res.send({ message: "This user does not exist" });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({ message: "Internal server error" });
     }
   }
 
   static async update_user(req, res) {
-    const id = parseInt(req.params.id);
-    const { name, email, password, location, role, interests } = req.body;
+    const id = parseInt(req.user.userId);
+    const { name, password, location, role, interests } = req.body;
 
     var result = await userModel.update_user(
       id,
       name,
-      email,
       password,
       location,
       role,
@@ -93,27 +109,30 @@ class UserController {
     }
   }
 
+  static async login(req, res) {
+    const user = await userModel.authenticateUser(
+      req.body.email,
+      req.body.password
+    );
 
-static async login (req, res)  {
-  const user = await userModel.authenticateUser(req.body.email, req.body.password);
+    if (!user) {
+      return res.status(401).json({ message: "Invalid credentials" });
+    }
 
-  if (!user) {
-    return res.status(401).json({ message: 'Invalid credentials' });
+    // Generate a JWT
+    const payload = {
+      userId: user.userId,
+      username: user.username,
+      location: user.location, // Extract the location here
+    };
+    const token = jwt.sign(payload, "SecretKey", { expiresIn: "1h" });
+    delete user.password;
+    const user_name = user.username;
+    res.status(200).json({ token, user_name });
   }
-
-  // Generate a JWT
-  const payload = {
-    userId: user.userId,
-    username: user.username,
-    location: user.location, // Extract the location here
-  };
-  const token = jwt.sign(payload, 'SecretKey', { expiresIn: '1h' });
-  delete user.password;
-  const user_name = user.username
-  res.status(200).json({ token, user_name });
-} catch (err) {
-  // Send the token to the client
-  res.json({ token });
-}
+  catch(err) {
+    // Send the token to the client
+    res.json({ token });
+  }
 }
 module.exports = UserController;

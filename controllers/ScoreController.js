@@ -1,21 +1,8 @@
 const scoreModel = require("../models/Score");
 
 class ScoreController {
-  static async create_score(req, res) {
-    const { scoreValue, userId } = req.body;
-
-    var result = await scoreModel.create_score(scoreValue, userId);
-
-    if (result.affectedRows > 0) {
-      // Created successfully
-      res.send({ message: "The score was created successfully" });
-    } else {
-      res.send(result);
-    }
-  }
-
   static async delete_score(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.userId);
     var result = await scoreModel.delete_score(id);
 
     if (result.affectedRows > 0) {
@@ -27,7 +14,7 @@ class ScoreController {
   }
 
   static async update_score(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.userId);
     const { scoreValue } = req.body;
 
     var result = await scoreModel.update_score(id, scoreValue);
@@ -41,7 +28,7 @@ class ScoreController {
   }
 
   static async get_score_byId(req, res) {
-    const id = parseInt(req.params.id);
+    const id = parseInt(req.user.userId);
     var result = await scoreModel.get_score_byId(id);
 
     if (Array.isArray(result) && result.length > 0) {

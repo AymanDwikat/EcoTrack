@@ -1,6 +1,6 @@
 {
     "name": "aymanemad",
-    "email": "aymanemad@gmai.com",
+    "email": "aymanemad@gmail.com",
     "password": "123456",
     "location": "nablus",
     "role": "dd",

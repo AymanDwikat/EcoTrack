@@ -14,47 +14,47 @@ class UserModel {
     userPassword,
     userLocation,
     userRole,
-    userInerests
+    userInterests
   ) {
     return new Promise((resolve) => {
-      const sql =
+      const insertUserQuery =
         "INSERT INTO users (name, email, password, location, role, interests) VALUES (?, ?, ?, ?, ?, ?)";
-      const values = [
+      const userValues = [
         userName,
         userEmail,
         userPassword,
         userLocation,
         userRole,
-        userInerests,
+        userInterests,
       ];
 
-      db.query(sql, values, (error, result) => {
+      db.query(insertUserQuery, userValues, (error, userResult) => {
         if (error) {
           resolve(error);
         } else {
-          resolve(result);
+          const userId = userResult.insertId; // Get the generated userId
+
+          const initialScoreValue = 0;
+          const insertScoreQuery =
+            "INSERT INTO scores (scoreValue, userId) VALUES (?, ?)";
+          const scoreValues = [initialScoreValue, userId];
+
+          db.query(insertScoreQuery, scoreValues, (error, scoreResult) => {
+            if (error) {
+              resolve(error);
+            } else {
+              resolve(userResult);
+            }
+          });
         }
       });
     });
   }
 
-  static delete_user(id) {
-    return new Promise((resolve) => {
-      const sql = "DELETE FROM users WHERE userId = ?";
-
-      db.query(sql, [id], (error, result) => {
-        if (error) {
-          resolve(error);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  }
   static authenticateUser(email, password) {
     return new Promise((resolve, reject) => {
       const sql = "SELECT * FROM users WHERE email = ? AND password = ?";
-  
+
       db.query(sql, [email, password], (error, results) => {
         if (error) {
           reject(error);
@@ -64,7 +64,7 @@ class UserModel {
             resolve({
               userId: user.userId,
               username: user.name,
-              location: user.location  
+              location: user.location,
             });
           } else {
             resolve(null); // User not found or invalid credentials
@@ -73,10 +73,82 @@ class UserModel {
       });
     });
   }
+
+  static delete_user(id) {
+    return new Promise(async (resolve) => {
+      // Delete related records (e.g., scores) first
+      await this.deleteRelatedScores(id);
+      await this.deleteRelatedReports(id);
+      await this.deleteRelatedDataCollections(id);
+
+      // Then, delete the user
+      const sql = "DELETE FROM users WHERE userId = ?";
+      db.query(sql, [id], (error, result) => {
+        if (error) {
+          console.error("Error executing delete query:", error);
+          resolve(error);
+        } else {
+          console.log("Delete query:", sql);
+          console.log("User ID:", id);
+          console.log("Delete result:", result);
+
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  static deleteRelatedScores(userId) {
+    return new Promise((resolve) => {
+      // Modify this function to delete related records (e.g., scores) for the given user ID
+      const deleteScoresQuery = "DELETE FROM scores WHERE userId = ?";
+      db.query(deleteScoresQuery, [userId], (error, result) => {
+        if (error) {
+          console.error("Error deleting scores:", error);
+          resolve(error);
+        } else {
+          console.log("Deleted scores for user ID:", userId);
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  static deleteRelatedReports(userId) {
+    return new Promise((resolve) => {
+      // Modify this function to delete related records (e.g., scores) for the given user ID
+      const deleteScoresQuery = "DELETE FROM reports WHERE userId = ?";
+      db.query(deleteScoresQuery, [userId], (error, result) => {
+        if (error) {
+          console.error("Error deleting reports:", error);
+          resolve(error);
+        } else {
+          console.log("Deleted reports for user ID:", userId);
+          resolve(result);
+        }
+      });
+    });
+  }
+
+  static deleteRelatedDataCollections(userId) {
+    return new Promise((resolve) => {
+      // Modify this function to delete related records (e.g., scores) for the given user ID
+      const deleteScoresQuery = "DELETE FROM datacollections WHERE userId = ?";
+      db.query(deleteScoresQuery, [userId], (error, result) => {
+        if (error) {
+          console.error("Error deleting data collections:", error);
+          resolve(error);
+        } else {
+          console.log("Deleted data collections for user ID:", userId);
+          resolve(result);
+        }
+      });
+    });
+  }
+
   static update_user(
     id,
     userName,
-    userEmail,
     userPassword,
     userLocation,
     userRole,
@@ -84,10 +156,9 @@ class UserModel {
   ) {
     return new Promise((resolve) => {
       const sql =
-        "UPDATE users SET name = ?, email = ?, password = ?, location = ?, role = ?, interests = ? WHERE userId = ?";
+        "UPDATE users SET name = ?, password = ?, location = ?, role = ?, interests = ? WHERE userId = ?";
       const values = [
         userName,
-        userEmail,
         userPassword,
         userLocation,
         userRole,

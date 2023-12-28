@@ -1,17 +1,17 @@
-const Datacollection = require("../models/Datacollection");
+const Datacollection = require("../models/DataCollection");
 class DataCollectionController {
   static async insertdata(req, res) {
-    const { dataId,dataType,datakey,location,value,source,unit,userId} = req.body;
+    const userId = parseInt(req.user.userId);
+    const { dataType, location, value, source, unit } = req.body;
 
     var result = await Datacollection.insertdata(
-        dataId,
-        dataType,
-        datakey,
-        location,
-        value,
-        source,
-        unit,
-        userId);
+      dataType,
+      location,
+      value,
+      source,
+      unit,
+      userId
+    );
 
     if (result.affectedRows > 0) {
       // Created successfully
@@ -20,19 +20,15 @@ class DataCollectionController {
       res.send(result);
     }
   }
+
   static async updatedata(req, res) {
     const dataid = parseInt(req.params.dataId);
-    const {dataType,datakey,location,value,source,unit,userId} = req.body;
+    const { value } = req.body;
 
     var result = await Datacollection.updatedata(
-      dataid,
-      dataType,
-      datakey,
-      location,
       value,
-      source,
-      unit,
-      userId);
+      dataid
+    );
 
     if (result.affectedRows > 0) {
       // Updated successfully
@@ -41,6 +37,7 @@ class DataCollectionController {
       res.send({ message: "This data does not exist" });
     }
   }
+
   static async getData(req, res) {
     const userId = parseInt(req.params.userId);
 
@@ -59,6 +56,7 @@ class DataCollectionController {
       res.status(500).send({ message: "Internal Server Error" });
     }
   }
+
   static async deletedata(req, res) {
     const dataId = parseInt(req.params.dataId);
     var result = await Datacollection.deletedata(dataId);

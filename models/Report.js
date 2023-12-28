@@ -44,11 +44,12 @@ class ReportModel {
       });
     });
   }
-  static update_report(id, reportType, description, location) {
+  
+  static update_report(id, location) {
     return new Promise((resolve) => {
       const sql =
-        "UPDATE reports SET reportType = ?, description = ?, location = ? WHERE reportId = ?";
-      const values = [reportType, description, location, id];
+        "UPDATE reports SET location = ? WHERE reportId = ?";
+      const values = [location, id];
 
       db.query(sql, values, (error, result) => {
         if (error) {

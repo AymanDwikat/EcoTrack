@@ -2,7 +2,8 @@ const reportModel = require("../models/Report");
 
 class ReportController {
   static async create_report(req, res) {
-    const { reportType, description, location, userId } = req.body;
+    const userId = parseInt(req.user.userId);
+    const { reportType, description, location } = req.body;
 
     var result = await reportModel.create_report(
       reportType,
@@ -33,12 +34,10 @@ class ReportController {
 
   static async update_report(req, res) {
     const id = parseInt(req.params.id);
-    const { reportType, description, location } = req.body;
+    const { location } = req.body;
 
     var result = await reportModel.update_report(
       id,
-      reportType,
-      description,
       location
     );
 
@@ -60,6 +59,7 @@ class ReportController {
           reportType: report.reportType,
           description: report.description,
           location: report.location,
+          userId: report.userId,
         };
       });
 

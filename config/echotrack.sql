@@ -43,7 +43,6 @@ CREATE TABLE `alerts` (
 CREATE TABLE `datacollections` (
   `dataId` int(11) NOT NULL,
   `dataType` varchar(255) NOT NULL,
-  `datakey` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
   `value` float NOT NULL,
   `source` varchar(255) NOT NULL,
@@ -55,18 +54,18 @@ CREATE TABLE `datacollections` (
 -- Dumping data for table `datacollections`
 --
 
-INSERT INTO `datacollections` (`dataId`, `dataType`, `datakey`, `location`, `value`, `source`, `unit`, `userId`) VALUES
-(7, 'humidity', 'sensor', 'biet-foureek', 24.5, 'sensor', 'g.m', 3),
-(10, 'temp', 'sensor', 'Nablus', 13, 'sensor', 'C', 3);
+INSERT INTO `datacollections` (`dataId`, `dataType`, `location`, `value`, `source`, `unit`, `userId`) VALUES
+(7, 'humidity', 'biet-foureek', 24.5, 'sensor', 'g.m', 3),
+(10, 'temp', 'Nablus', 13, 'sensor', 'C', 3);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `educationals`
+-- Table structure for table `resources`
 --
 
-CREATE TABLE `educationals` (
-  `educationalid` int(11) NOT NULL,
+CREATE TABLE `resources` (
+  `resourceId` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
@@ -74,10 +73,10 @@ CREATE TABLE `educationals` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `educationals`
+-- Dumping data for table `resources`
 --
 
-INSERT INTO `educationals` (`educationalid`, `title`, `description`, `url`, `category`) VALUES
+INSERT INTO `resources` (`resourceId`, `title`, `description`, `url`, `category`) VALUES
 (2, 'Introduction to Sustainable Energy', 'Learn the basics of sustainable energy sources and their impact on the environment.', 'https://www.routledge.com/blog/article/what-is-sustainable-energy-and-why-do-we-need-it', ' Energy');
 
 -- --------------------------------------------------------
@@ -207,8 +206,8 @@ ALTER TABLE `datacollections`
 --
 -- Indexes for table `educationals`
 --
-ALTER TABLE `educationals`
-  ADD PRIMARY KEY (`educationalid`);
+ALTER TABLE `resources`
+  ADD PRIMARY KEY (`resourceId`);
 
 --
 -- Indexes for table `opendata`
@@ -263,8 +262,8 @@ ALTER TABLE `datacollections`
 --
 -- AUTO_INCREMENT for table `educationals`
 --
-ALTER TABLE `educationals`
-  MODIFY `educationalid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `resources`
+  MODIFY `resourceId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `opendata`

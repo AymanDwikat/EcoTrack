@@ -1,5 +1,5 @@
 // controllers/weatherController.js
-const WeatherModel = require('../models/weatherModel');
+const WeatherModel = require('../models/Weather');
 
 class WeatherController {
   static async getWeather(req, res) { 
